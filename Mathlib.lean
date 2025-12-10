@@ -6835,6 +6835,7 @@ public import Mathlib.Topology.Algebra.Module.CharacterSpace
 public import Mathlib.Topology.Algebra.Module.ClosedSubmodule
 public import Mathlib.Topology.Algebra.Module.Compact
 public import Mathlib.Topology.Algebra.Module.Determinant
+public import Mathlib.Topology.Algebra.Module.DualTopology
 public import Mathlib.Topology.Algebra.Module.Equiv
 public import Mathlib.Topology.Algebra.Module.FiniteDimension
 public import Mathlib.Topology.Algebra.Module.LinearMap
