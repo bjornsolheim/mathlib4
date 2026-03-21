@@ -316,6 +316,24 @@ lemma map_comp_apply (f : X → Y) (g : Y → Z) (x : stdSimplex S X) :
   ext
   simp [FunOnFinite.linearMap_comp]
 
+/-- For injective `f`, `stdSimplex.map f` preserves coordinate values at image points:
+`(map f x)(f i) = x i`. -/
+@[simp]
+lemma map_apply (f : X → Y) (hf : Function.Injective f) (x : stdSimplex S X) (i : X) :
+    (map f x) (f i) = x i := by
+  classical
+  simp only [map_coe, FunOnFinite.linearMap_apply_apply]
+  apply Finset.sum_eq_single i <;> simp [hf.eq_iff]
+
+/-- Coordinates at indices outside the range of `f` are zero: `(map f x) k = 0` when
+`k ∉ range f`. -/
+lemma map_apply_of_not_mem_range (f : X → Y) (x : stdSimplex S X) {k : Y} (hk : k ∉ Set.range f) :
+    (map f x) k = 0 := by
+  classical
+  simp only [map_coe, FunOnFinite.linearMap_apply_apply]
+  refine Finset.sum_eq_zero fun i hi => absurd ⟨i, ?_⟩ hk
+  simpa using hi
+
 /-- The vertex corresponding to `x : X` in `stdSimplex S X`. -/
 abbrev vertex [DecidableEq X] (x : X) : stdSimplex S X :=
   ⟨Pi.single x 1, single_mem_stdSimplex S x⟩
